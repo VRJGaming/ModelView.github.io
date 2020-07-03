@@ -71,7 +71,7 @@
 				  ar-scale="auto"
 				  camera-controls
 				  data-js-focus-visible
-                                  interaction-prompt="auto"
+                  interaction-prompt="auto"
 				   ar
 				   
 				 environment-image="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2Fbackground360.jpg?v=1589523786316"
@@ -101,16 +101,6 @@
       src="https://unpkg.com/@google/model-viewer@v0.9.0/dist/model-viewer-legacy.js">
   </script>
   
-  <script>
-        (() => {
-          var checkExist = setInterval(function() {
-           if (document.querySelector("#viewer-singleton") != null) {
-              modelViewer = document.querySelector("#viewer-singleton");
-              modelViewer.activateAR();
-              clearInterval(checkExist);
-           }
-        }, 100);
-        })();
-    </script>
+ 
 </body>
 </html>
