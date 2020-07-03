@@ -22,7 +22,7 @@
     <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
 
     <!-- 💁 OPTIONAL: Fullscreen polyfill is needed to fully support AR features -->
-    <!--<script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>-->
+    <script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>
 
     <!-- 💁 OPTIONAL: Include prismatic.js for Magic Leap support -->
     <script src="https://unpkg.com/@magicleap/prismatic/prismatic.min.js"></script>
@@ -63,17 +63,17 @@
     
 	
 	</div>
-	<div1 id = "card">
+	<div id = "card01">
 	<model-viewer src="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2FModel3.glb?v=1589551783498"
                   ios-src="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2FModel3.usdz?v=1589551938586"
                   alt="Danfoss Model One"
                   shadow-intensity="1"
-				  ar-scale="auto";
+				  ar-scale="auto"
 				  camera-controls
 				  data-js-focus-visible
                                   interaction-prompt="auto"
 				   ar
-				   id = "viewer-singleton"
+				   
 				 environment-image="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2Fbackground360.jpg?v=1589523786316"
                                  poster="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2F1200px-Danfoss.png?v=1589529482623"
                                  
@@ -81,7 +81,7 @@
    </model-viewer>
 				   
    
-	</div1>
+	</div>
     
   
   
