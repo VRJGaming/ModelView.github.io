@@ -1,65 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <title>MODEL VIEWER</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;           /* Page padding */
-      background: #f1f1f1;     /* Light background */
-      display: flex;
-      flex-direction: column;
-      gap: 40px;               /* Space between models */
-    }
+    <link rel="stylesheet" href="demo-styles.css">
 
-    .model-box {
-      width: 100%;
-      height: 400px;           /* Not full screen */
-      background: #fff;        /* White background box */
-      border-radius: 10px;
-      padding: 10px;           /* Inner padding */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+    <!-- Polyfills -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
+    <script src="https://unpkg.com/@magicleap/prismatic/prismatic.min.js"></script>
 
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      background-color: transparent;
-    }
-  </style>
+    <style>
+      body {
+        margin: 0;
+        background: #f5f5f5;
+        padding: 20px; /* Padding so models don’t touch screen edge */
+      }
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-</head>
+      #card, #card01 {
+        margin-bottom: 40px; /* Space between the two models */
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 400px;
+        border-radius: 12px;
+      }
+    </style>
+
+  </head>
 <body>
 
-  <!-- MODEL 1 (TOP) -->
-  <div class="model-box">
-    <!-- OLD POSTER LINE VISIBLE -->
-    <!-- poster="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2F1200px-Danfoss.png?v=1589529482623" -->
-
+  <!-- FIRST MODEL (Environment added back) -->
+  <div id="card">
     <model-viewer
       src="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2FModel3.glb?v=1589551783498"
       ios-src="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2FModel3.usdz?v=1589551938586"
+      alt="Danfoss Model One"
+      shadow-intensity="0"
+      preload
+      interaction-prompt="auto"
       camera-controls
-      ar
       ar-scale="auto"
-      shadow-intensity="1"
+      data-js-focus-visible
+      ar
+      id="viewer-singleton"
+      environment-image="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2Fbackground360.jpg?v=1589523786316"
+      skybox-image="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2Fbackground360.jpg?v=1589523786316"
+
+      <!-- poster="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2F1200px-Danfoss.png?v=1589529482623"
+      magic-leap -->
     ></model-viewer>
   </div>
 
-  <!-- MODEL 2 (BOTTOM) -->
-  <div class="model-box">
+  <!-- SECOND MODEL -->
+  <div id="card01">
     <model-viewer
       src="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2FModel3.glb?v=1589551783498"
       ios-src="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2FModel3.usdz?v=1589551938586"
-      camera-controls
-      ar
-      ar-scale="auto"
+      alt="Danfoss Model One"
       shadow-intensity="1"
+      ar-scale="auto"
+      camera-controls
+      data-js-focus-visible
+      interaction-prompt="auto"
+      ar
+      id="viewer-singleton-2"
+      environment-image="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2Fbackground360.jpg?v=1589523786316"
+
+      <!-- poster="https://cdn.glitch.com/6a6cb1bc-144b-46a1-aeb4-57cc61ffcf7f%2F1200px-Danfoss.png?v=1589529482623"
+      magic-leap -->
     ></model-viewer>
   </div>
+
+  <!-- Auto AR script -->
+  <script>
+    (() => {
+      var checkExist = setInterval(function() {
+        if (document.querySelector("#viewer-singleton") != null) {
+          modelViewer = document.querySelector("#viewer-singleton");
+          modelViewer.activateAR();
+          clearInterval(checkExist);
+        }
+      }, 100);
+    })();
+  </script>
+
+  <!-- Model viewer scripts -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer@v0.9.0/dist/model-viewer.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer@v0.9.0/dist/model-viewer-legacy.js"></script>
 
 </body>
 </html>
